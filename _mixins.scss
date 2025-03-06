@@ -1,0 +1,33 @@
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+  }
+  
+  @mixin flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  @mixin button-base {
+    padding: 12px;
+    text-decoration: none;
+    font-family: 10px;
+    border: 5px;
+    border-radius: $border-radius-button;
+  }
+  
+  @mixin absolute-position($top: null, $right: null, $bottom: null, $left: null) {
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+  }
+  
+  @mixin z-index-element {
+    position: relative;
+    z-index: 2;
+  }

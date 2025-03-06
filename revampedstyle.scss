@@ -1,0 +1,217 @@
+
+// Variables
+$font-primary: Arial, Helvetica, sans-serif;
+$color-text: white;
+$color-dark: black;
+$border-radius-button: 20px;
+$box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.3);
+
+//mixins import
+@import 'mixins';
+
+// Reset & Base Styles
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  height: 100vh;
+  background: url(image.jpg) no-repeat center center/cover;
+  overflow: hidden;
+  color: $color-text;
+  font-family: $font-primary;
+  width: 100%;
+  
+  &::before {
+    content: "";
+    @include absolute-position(0, null, null, 0);
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+}
+
+// Z-indexed elements
+header, .hero, .floats, .footer {
+  @include z-index-element;
+}
+
+// Header Styles
+header {
+  @include absolute-position(0, null, null, 0);
+  width: 100%;
+  @include flex-between;
+  margin-top: 0px;
+  padding-top: 50px;
+  border: none;
+}
+
+.logo {
+  font-size: 30px;
+  margin-left: 20vh;
+  font-weight: bold;
+}
+
+.navbar {
+  @include flex-center;
+  margin-left: 200px;
+  font-size: 2.25vh;
+}
+
+nav {
+  ul {
+    list-style: none;
+    display: flex;
+    margin-right: 200px;
+    
+    li {
+      margin: 0 10px;
+      
+      a {
+        text-decoration: none;
+        color: $color-text;
+      }
+    }
+  }
+}
+
+// Button Styles
+.buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-right: 20vh;
+}
+
+.button1 {
+  @include button-base;
+  background-color: $color-text;
+  color: $color-dark;
+}
+
+.button2 {
+  @include button-base;
+  background: rgba(255, 255, 255, 0.1);
+  color: $color-text;
+}
+
+// Hero Section
+.hero {
+  @include absolute-position(50%, null, null, 50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  
+  h1 {
+    font-size: 80px;
+    font-weight: bold;
+  }
+}
+
+// Float Boxes
+.floats {
+  @include absolute-position;
+  width: 100%;
+  height: 100vh;
+}
+
+.float-box {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 15px;
+  border-radius: 15px;
+  text-align: left;
+  @include flex-center;
+  min-width: 200px;
+  max-width: 200px;
+  box-shadow: $box-shadow;
+  backdrop-filter: blur(1px);
+  
+  h4 {
+    @include flex-center;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    gap: 10px;
+    
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+  
+  img {
+    width: 20px;
+    margin-bottom: 10px;
+  }
+}
+
+// Individual box positions and icons
+#box1 {
+  @include absolute-position(9%, null, null, 20%);
+  
+  h4::before {
+    background-image: url('float1.png');
+  }
+}
+
+#box2 {
+  @include absolute-position(11.5%, 20%, null, null);
+  
+  h4::before {
+    background-image: url('float2.png');
+  }
+}
+
+#box3 {
+  @include absolute-position(null, null, 28%, 20%);
+  
+  h4::before {
+    background-image: url('float3.png');
+  }
+}
+
+#box4 {
+  @include absolute-position(null, 25%, 27%, null);
+  
+  h4::before {
+    background-image: url('float4.png');
+  }
+}
+
+// Footer
+.footer {
+  @include absolute-position(null, null, 3vh, 50%);
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 0.9em;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-direction: column;
+  
+  &-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .user-images {
+    display: flex;
+    align-items: center;
+    
+    img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      margin-left: -8px;
+      border: 2px solid $color-dark;
+    }
+  }
+}
