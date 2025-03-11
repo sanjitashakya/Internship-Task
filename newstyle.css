@@ -6,97 +6,106 @@ body {
   height: 100vh;
   background: url(image.jpg) no-repeat center center/cover;
   overflow: hidden;
-  color: "#000000";
-  font-family: "Arial, Helvetica, sans-serif";
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
   width: 100%;
 }
-body-before {
+body::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
-body header, body .hero, body .floats, body .footer {
+
+header, .hero, .floats, .footer {
   position: relative;
   z-index: 2;
 }
-body header {
+
+header {
+  position: relative;
   width: 100%;
   top: 0;
   left: 0;
   display: flex;
-  margin-top: 0px;
+  margin-top: 0;
   padding-top: 50px;
   justify-content: space-between;
   align-items: center;
   z-index: 2;
   border: none;
 }
-body header .logo {
+
+.logo {
   font-size: 30px;
   margin-left: 20vh;
   font-weight: bold;
 }
-body header .navbar {
+
+.navbar {
   display: flex;
   align-items: center;
   margin-left: 200px;
   font-size: 2.25vh;
 }
-body header .navbar ul {
+
+nav ul {
   list-style: none;
   display: flex;
   margin-right: 200px;
 }
-body header .navbar ul li {
+nav ul li {
   margin: 0 10px;
 }
-body header .navbar ul li a {
+nav ul li a {
   text-decoration: none;
   color: white;
 }
-body header .navbar .buttons {
+
+.buttons {
   display: flex;
   gap: 15px;
   justify-content: flex-end;
   margin-right: 20vh;
+}
+.buttons .button1, .buttons .button2 {
+  padding: 12px;
   text-decoration: none;
   font-family: 10px;
+  border-radius: 20px;
 }
-body header .navbar .buttons .button1 {
-  padding: 12px;
-  border: 5px;
+.buttons .button1 {
   background-color: white;
   color: black;
-  border-radius: 20px;
 }
-body header .navbar .buttons .button2 {
-  padding: 12px;
-  border: 5px;
+.buttons .button2 {
   background: rgba(255, 255, 255, 0.1);
   color: white;
-  border-radius: 20px;
 }
-body .hero {
+
+.hero {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
 }
-body .hero h1 {
+.hero h1 {
   font-size: 80px;
   font-weight: bold;
 }
-body .floats {
+
+.floats {
   position: absolute;
   width: 100%;
   height: 100vh;
 }
-body .floats .float-box {
+
+.float-box {
   position: absolute;
   background: rgba(255, 255, 255, 0.15);
   padding: 15px;
@@ -107,9 +116,10 @@ body .floats .float-box {
   min-width: 200px;
   max-width: 200px;
   box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
 }
-body .floats .float-box h4 {
+.float-box h4 {
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -117,7 +127,7 @@ body .floats .float-box h4 {
   margin: 0;
   gap: 10px;
 }
-body .floats .float-box h4-before {
+.float-box h4::before {
   content: "";
   display: inline-block;
   width: 30px;
@@ -127,4 +137,73 @@ body .floats .float-box h4-before {
   background-position: center;
 }
 
-/*# sourceMappingURL=newstyle.css.map */
+#box1 h4::before {
+  background-image: url("float1.png");
+}
+
+#box2 h4::before {
+  background-image: url("float2.png");
+}
+
+#box3 h4::before {
+  background-image: url("float3.png");
+}
+
+#box4 h4::before {
+  background-image: url("float4.png");
+}
+
+#box1 {
+  top: 9%;
+  left: 20%;
+}
+
+#box2 {
+  top: 11.5%;
+  right: 20%;
+}
+
+#box3 {
+  bottom: 28%;
+  left: 20%;
+}
+
+#box4 {
+  bottom: 27%;
+  right: 25%;
+}
+
+.float-box img {
+  width: 20px;
+  margin-bottom: 10px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 3vh;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 0.9em;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-direction: column;
+}
+.footer .footer-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer .user-images {
+  display: flex;
+  align-items: center;
+}
+.footer .user-images img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-left: -8px;
+  border: 2px solid black;
+}/*# sourceMappingURL=newstyle.css.map */
