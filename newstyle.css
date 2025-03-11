@@ -20,13 +20,11 @@ body::before {
   background: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
-
-header, .hero, .floats, .footer {
+body header, body .hero, body .floats, body .footer {
   position: relative;
   z-index: 2;
 }
-
-header {
+body header {
   position: relative;
   width: 100%;
   top: 0;
@@ -39,73 +37,66 @@ header {
   z-index: 2;
   border: none;
 }
-
-.logo {
+body header .logo {
   font-size: 30px;
   margin-left: 20vh;
   font-weight: bold;
 }
-
-.navbar {
+body header .navbar {
   display: flex;
   align-items: center;
   margin-left: 200px;
   font-size: 2.25vh;
 }
-
-nav ul {
+body header nav ul {
   list-style: none;
   display: flex;
   margin-right: 200px;
 }
-nav ul li {
+body header nav ul li {
   margin: 0 10px;
 }
-nav ul li a {
+body header nav ul li a {
   text-decoration: none;
   color: white;
 }
-
-.buttons {
+body header nav .buttons {
   display: flex;
   gap: 15px;
   justify-content: flex-end;
   margin-right: 20vh;
 }
-.buttons .button1, .buttons .button2 {
+body header nav .buttons .button1, body header nav .buttons .button2 {
   padding: 12px;
   text-decoration: none;
   font-family: 10px;
   border-radius: 20px;
 }
-.buttons .button1 {
+body header nav .buttons .button1 {
   background-color: white;
   color: black;
 }
-.buttons .button2 {
+body header nav .buttons .button2 {
   background: rgba(255, 255, 255, 0.1);
   color: white;
 }
-
-.hero {
+body .hero {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
 }
-.hero h1 {
+body .hero h1 {
   font-size: 80px;
   font-weight: bold;
 }
-
-.floats {
+body .floats {
   position: absolute;
   width: 100%;
   height: 100vh;
 }
-
-.float-box {
+body .floats .float-box {
   position: absolute;
   background: rgba(255, 255, 255, 0.15);
   padding: 15px;
@@ -119,7 +110,7 @@ nav ul li a {
   -webkit-backdrop-filter: blur(1px);
           backdrop-filter: blur(1px);
 }
-.float-box h4 {
+body .floats .float-box h4 {
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -127,7 +118,7 @@ nav ul li a {
   margin: 0;
   gap: 10px;
 }
-.float-box h4::before {
+body .floats .float-box h4::before {
   content: "";
   display: inline-block;
   width: 30px;
@@ -136,49 +127,39 @@ nav ul li a {
   background-repeat: no-repeat;
   background-position: center;
 }
-
-#box1 h4::before {
-  background-image: url("float1.png");
-}
-
-#box2 h4::before {
-  background-image: url("float2.png");
-}
-
-#box3 h4::before {
-  background-image: url("float3.png");
-}
-
-#box4 h4::before {
-  background-image: url("float4.png");
-}
-
-#box1 {
-  top: 9%;
-  left: 20%;
-}
-
-#box2 {
-  top: 11.5%;
-  right: 20%;
-}
-
-#box3 {
-  bottom: 28%;
-  left: 20%;
-}
-
-#box4 {
-  bottom: 27%;
-  right: 25%;
-}
-
-.float-box img {
+body .floats .float-box img {
   width: 20px;
   margin-bottom: 10px;
 }
-
-.footer {
+body .floats #box1 {
+  top: 9%;
+  left: 20%;
+}
+body .floats #box2 {
+  top: 11.5%;
+  right: 20%;
+}
+body .floats #box3 {
+  bottom: 28%;
+  left: 20%;
+}
+body .floats #box4 {
+  bottom: 27%;
+  right: 25%;
+}
+body .floats #box1 h4::before {
+  background-image: url("float1.png");
+}
+body .floats #box2 h4::before {
+  background-image: url("float2.png");
+}
+body .floats #box3 h4::before {
+  background-image: url("float3.png");
+}
+body .floats #box4 h4::before {
+  background-image: url("float4.png");
+}
+body .footer {
   position: absolute;
   bottom: 3vh;
   left: 50%;
@@ -191,16 +172,16 @@ nav ul li a {
   gap: 5px;
   flex-direction: column;
 }
-.footer .footer-row {
+body .footer .footer-row {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.footer .user-images {
+body .footer .user-images {
   display: flex;
   align-items: center;
 }
-.footer .user-images img {
+body .footer .user-images img {
   width: 35px;
   height: 35px;
   border-radius: 50%;
