@@ -1,0 +1,92 @@
+$primary-color: #490e04;
+$primary-dark: #9b0d3e;
+$background-color: #f0f2f5;
+$card-bg: #e3d5e6;
+$user-cardbg:#c39488;
+$text-color: #333;
+$shadow-light: rgba(0, 0, 0, 0.1);
+$shadow-dark: rgba(0, 0, 0, 0.2);
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: $background-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120vh;
+    margin: 0;
+}
+
+.container {
+    background: $card-bg;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 15px $shadow-light;
+    text-align: center;
+    width: 350px;
+
+    h1 {
+        font-size: 1.5rem;
+        color: $text-color;
+    }
+}
+
+button {
+    background-color: $primary-color;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+
+    &:hover {
+        background-color: $primary-dark;
+    }
+}
+
+// Loading Indicator
+.loading {
+    display: none;
+    margin-top: 10px;
+    font-style: italic;
+    color: #888;
+}
+
+// User List
+.user-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+// User Card
+.user-card {
+    background: $user-cardbg;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px $shadow-light;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0px 4px 8px $shadow-dark;
+    }
+}
+
+// User Avatar
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #5c0e05;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #d8d9e2;
+}
