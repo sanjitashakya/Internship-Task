@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meme Generator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background: linear-gradient(to right, #83a4d4, #b6fbff);
+      padding: 2rem;
+    }
+
+    .meme-container {
+      position: relative;
+      max-width: 500px;
+      margin: 1rem auto;
+    }
+
+    .meme-container img {
+      width: 100%;
+      display: block;
+    }
+
+    .meme-text {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 2rem;
+      text-shadow: 2px 2px 5px black;
+      font-weight: bold;
+      width: 90%;
+      text-align: center;
+    }
+
+    .top-text { top: 10px; }
+    .bottom-text { bottom: 10px; }
+
+    input {
+      padding: 0.7em;
+      font-size: 1rem;
+      margin: 0.5em;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 40%;
+    }
+
+    button {
+      padding: 0.7em 1.5em;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      margin: 0.5em;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🐶 Meme Generator</h1>
+
+  <div class="meme-container" id="meme">
+    <img id="memeImage" crossorigin="anonymous" src="" alt="Meme Image"/>
+    <div class="meme-text top-text" id="topTextDisplay"></div>
+    <div class="meme-text bottom-text" id="bottomTextDisplay"></div>
+  </div>
+
+  <input type="text" id="topTextInput" placeholder="Top Text">
+  <input type="text" id="bottomTextInput" placeholder="Bottom Text">
+  <br>
+  <button id="newMemeBtn">New Meme</button>
+  <button id="resetBtn">Reset</button>
+  <button id="downloadBtn">Download</button>
+
+  <canvas id="memeCanvas" style="display: none;"></canvas>
+
+  <script>
+    const memeImage = document.getElementById('memeImage');
+    const topTextDisplay = document.getElementById('topTextDisplay');
+    const bottomTextDisplay = document.getElementById('bottomTextDisplay');
+    const topTextInput = document.getElementById('topTextInput');
+    const bottomTextInput = document.getElementById('bottomTextInput');
+    const newMemeBtn = document.getElementById('newMemeBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const canvas = document.getElementById('memeCanvas');
+    const ctx = canvas.getContext('2d');
+
+
+    topTextInput.addEventListener('input', () => {
+      topTextDisplay.textContent = topTextInput.value;
+    });
+
+    bottomTextInput.addEventListener('input', () => {
+      bottomTextDisplay.textContent = bottomTextInput.value;
+    });
+
+    function fetchRandomImage() {
+      fetch('https://dog.ceo/api/breeds/image/random')
+        .then(response => response.json())
+        .then(data => {
+          const image = new Image();
+          image.crossOrigin = "anonymous";
+          image.onload = () => {
+            memeImage.src = data.message;
+          };
+          image.onerror = () => {
+            memeImage.src = 'https://via.placeholder.com/500';
+          };
+          image.src = data.message;
+        })
+        .catch(() => {
+          memeImage.src = 'https://via.placeholder.com/500';
+        });
+    }
+
+    newMemeBtn.addEventListener('click', fetchRandomImage);
+
+    resetBtn.addEventListener('click', () => {
+      topTextInput.value = '';
+      bottomTextInput.value = '';
+      topTextDisplay.textContent = '';
+      bottomTextDisplay.textContent = '';
+      memeImage.src = '';
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.src = memeImage.src;
+
+      img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        ctx.drawImage(img, 0, 0);
+
+        const fontSize = Math.floor(canvas.height * 0.07);
+        ctx.font = `${fontSize}px Impact`;
+        ctx.fillStyle = 'white';
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 4;
+        ctx.textAlign = 'center';
+
+        if (topTextInput.value) {
+          ctx.strokeText(topTextInput.value.toUpperCase(), canvas.width / 2, fontSize);
+          ctx.fillText(topTextInput.value.toUpperCase(), canvas.width / 2, fontSize);
+        }
+
+        if (bottomTextInput.value) {
+          ctx.strokeText(bottomTextInput.value.toUpperCase(), canvas.width / 2, canvas.height - 20);
+          ctx.fillText(bottomTextInput.value.toUpperCase(), canvas.width / 2, canvas.height - 20);
+        }
+
+        const link = document.createElement('a');
+        link.download = 'meme.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      };
+    });
+    fetchRandomImage();
+  </script>
+</body>
+</html>
